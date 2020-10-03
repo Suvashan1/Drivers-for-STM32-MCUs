@@ -7,7 +7,6 @@
 
 
 #include "stm32f407xx.h"
-#include "stm32f407xx_GPIO_Drivers.h"
 
 
 void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi)
@@ -52,18 +51,14 @@ void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi)
 void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 {
 	 GPIO_PeriClockControl(pGPIOHandle->pGPIOx, ENABLE);
-	 uint32_t temp=0; //temp. register
+	 uint32_t temp=0;
 
-	 //enable the peripheral clock
-
-
-	//1 . configure the mode of gpio pin
 
 	if(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode <= GPIO_MODE_ANALOG)
 	{
 		//the non interrupt mode
 		temp = (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber ) );
-		pGPIOHandle->pGPIOx->MODER &= ~( 0x3 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); //clearing
+		pGPIOHandle->pGPIOx->MODER &= ~( 0x3 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
 		pGPIOHandle->pGPIOx->MODER |= temp; //setting
 	}
 
@@ -161,7 +156,8 @@ uint8_t GPIO_ReadFromInputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)
 {
    uint8_t value;
 
-   value = (uint8_t )((pGPIOx->IDR  >> PinNumber) & 0x00000001 ) ;
+   value = (uint8_t )((pGPIOx->IDR  >> PinNumber) & 0x00000001 ) ;	//read from the IDR register of the peripheral
+   //and mask other bits
 
    return value;
 }
@@ -212,7 +208,7 @@ void GPIO_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority){
 
 void GPIO_IRQInterruptConfig(uint8_t IRQNumber, uint8_t EnorDi){
 
-	if (EnorDi = ENABLE){
+	if (EnorDi == ENABLE){
 		if (IRQNumber <= 31){
 			//program ISER0 register
 			*NVIC_ISER0 |= (1<< IRQNumber);

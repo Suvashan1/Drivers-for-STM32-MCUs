@@ -32,9 +32,9 @@
 #define NO_PR_BITS_IMPLEMENTED	4
 ///////////////////////////////////////////////////////////////////////////
 
-#define FLASH_BASEADDR						0x08000000U   		/*!<explain this macro briefly here  */
-#define SRAM1_BASEADDR						0x20000000U  		/*!<explain this macro briefly here  */
-#define SRAM2_BASEADDR						0x2001C000U 		/*!<explain this macro briefly here  */
+#define FLASH_BASEADDR						0x08000000U
+#define SRAM1_BASEADDR						0x20000000U
+#define SRAM2_BASEADDR						0x2001C000U
 #define ROM_BASEADDR						0x1FFF0000U
 #define SRAM 								SRAM1_BASEADDR
 
@@ -58,7 +58,7 @@
 
 /*
  * Base addresses of peripherals which are hanging on APB1 bus
- * TODO : Complete for all other peripherals
+ *
  */
 #define I2C1_BASEADDR						(APB1PERIPH_BASEADDR + 0x5400)
 #define I2C2_BASEADDR						(APB1PERIPH_BASEADDR + 0x5800)
@@ -74,7 +74,7 @@
 
 /*
  * Base addresses of peripherals which are hanging on APB2 bus
- * TODO : Complete for all other peripherals
+ *
  */
 #define EXTI_BASEADDR						(APB2PERIPH_BASEADDR + 0x3C00)
 #define SPI1_BASEADDR						(APB2PERIPH_BASEADDR + 0x3000)
@@ -92,111 +92,112 @@
  * Note : Registers of a peripheral are specific to MCU
  * e.g : Number of Registers of SPI peripheral of STM32F4x family of MCUs may be different(more or less)
  * Compared to number of registers of SPI peripheral of STM32Lx or STM32F0x family of MCUs
- * Please check your Device RM
  */
 
+
+/*
+ * peripheral definitions ( Peripheral base addresses typecasted to xxx_RegDef_t)
+ */
 typedef struct
 {
-	__vo uint32_t MODER;                        /*!< GPIO port mode register,                    	Address offset: 0x00      */
-	__vo uint32_t OTYPER;                       /*!< TODO,     										Address offset: 0x04      */
+	__vo uint32_t MODER;
+	__vo uint32_t OTYPER;
 	__vo uint32_t OSPEEDR;
 	__vo uint32_t PUPDR;
 	__vo uint32_t IDR;
 	__vo uint32_t ODR;
 	__vo uint32_t BSRR;
 	__vo uint32_t LCKR;
-	__vo uint32_t AFR[2];					 /*!< AFR[0] : GPIO alternate function low register, AF[1] : GPIO alternate function high register    		Address offset: 0x20-0x24 */
+	__vo uint32_t AFR[2];
 }GPIO_RegDef_t;
 
 /*
- * peripheral register definition structure for RCC
+ * peripheral definitions ( Peripheral base addresses typecasted to xxx_RegDef_t)
  */
 typedef struct
 {
-  __vo uint32_t CR;            /*!< TODO,     										Address offset: 0x00 */
-  __vo uint32_t PLLCFGR;       /*!< TODO,     										Address offset: 0x04 */
-  __vo uint32_t CFGR;          /*!< TODO,     										Address offset: 0x08 */
-  __vo uint32_t CIR;           /*!< TODO,     										Address offset: 0x0C */
-  __vo uint32_t AHB1RSTR;      /*!< TODO,     										Address offset: 0x10 */
-  __vo uint32_t AHB2RSTR;      /*!< TODO,     										Address offset: 0x14 */
-  __vo uint32_t AHB3RSTR;      /*!< TODO,     										Address offset: 0x18 */
-  uint32_t      RESERVED0;     /*!< Reserved, 0x1C                                                       */
-  __vo uint32_t APB1RSTR;      /*!< TODO,     										Address offset: 0x20 */
-  __vo uint32_t APB2RSTR;      /*!< TODO,     										Address offset: 0x24 */
-  uint32_t      RESERVED1[2];  /*!< Reserved, 0x28-0x2C                                                  */
-  __vo uint32_t AHB1ENR;       /*!< TODO,     										Address offset: 0x30 */
-  __vo uint32_t AHB2ENR;       /*!< TODO,     										Address offset: 0x34 */
-  __vo uint32_t AHB3ENR;       /*!< TODO,     										Address offset: 0x38 */
-  uint32_t      RESERVED2;     /*!< Reserved, 0x3C                                                       */
-  __vo uint32_t APB1ENR;       /*!< TODO,     										Address offset: 0x40 */
-  __vo uint32_t APB2ENR;       /*!< TODO,     										Address offset: 0x44 */
-  uint32_t      RESERVED3[2];  /*!< Reserved, 0x48-0x4C                                                  */
-  __vo uint32_t AHB1LPENR;     /*!< TODO,     										Address offset: 0x50 */
-  __vo uint32_t AHB2LPENR;     /*!< TODO,     										Address offset: 0x54 */
-  __vo uint32_t AHB3LPENR;     /*!< TODO,     										Address offset: 0x58 */
-  uint32_t      RESERVED4;     /*!< Reserved, 0x5C                                                       */
-  __vo uint32_t APB1LPENR;     /*!< TODO,     										Address offset: 0x60 */
-  __vo uint32_t APB2LPENR;     /*!< RTODO,     										Address offset: 0x64 */
-  uint32_t      RESERVED5[2];  /*!< Reserved, 0x68-0x6C                                                  */
-  __vo uint32_t BDCR;          /*!< TODO,     										Address offset: 0x70 */
-  __vo uint32_t CSR;           /*!< TODO,     										Address offset: 0x74 */
-  uint32_t      RESERVED6[2];  /*!< Reserved, 0x78-0x7C                                                  */
-  __vo uint32_t SSCGR;         /*!< TODO,     										Address offset: 0x80 */
-  __vo uint32_t PLLI2SCFGR;    /*!< TODO,     										Address offset: 0x84 */
-  __vo uint32_t PLLSAICFGR;    /*!< TODO,     										Address offset: 0x88 */
-  __vo uint32_t DCKCFGR;       /*!< TODO,     										Address offset: 0x8C */
-  __vo uint32_t CKGATENR;      /*!< TODO,     										Address offset: 0x90 */
-  __vo uint32_t DCKCFGR2;      /*!< TODO,     										Address offset: 0x94 */
+  __vo uint32_t CR;
+  __vo uint32_t PLLCFGR;
+  __vo uint32_t CFGR;
+  __vo uint32_t CIR;
+  __vo uint32_t AHB1RSTR;
+  __vo uint32_t AHB2RSTR;
+  __vo uint32_t AHB3RSTR;
+  uint32_t      RESERVED0;
+  __vo uint32_t APB1RSTR;
+  __vo uint32_t APB2RSTR;
+  uint32_t      RESERVED1[2];
+  __vo uint32_t AHB1ENR;
+  __vo uint32_t AHB2ENR;
+  __vo uint32_t AHB3ENR;
+  uint32_t      RESERVED2;
+  __vo uint32_t APB1ENR;
+  __vo uint32_t APB2ENR;
+  uint32_t      RESERVED3[2];
+  __vo uint32_t AHB1LPENR;
+  __vo uint32_t AHB2LPENR;
+  __vo uint32_t AHB3LPENR;
+  uint32_t      RESERVED4;
+  __vo uint32_t APB1LPENR;
+  __vo uint32_t APB2LPENR;
+  uint32_t      RESERVED5[2];
+  __vo uint32_t BDCR;
+  __vo uint32_t CSR;
+  uint32_t      RESERVED6[2];
+  __vo uint32_t SSCGR;
+  __vo uint32_t PLLI2SCFGR;
+  __vo uint32_t PLLSAICFGR;
+  __vo uint32_t DCKCFGR;
+  __vo uint32_t CKGATENR;
+  __vo uint32_t DCKCFGR2;
 
 } RCC_RegDef_t;
 
 
 typedef struct
 {
-	__vo uint32_t IMR; 				//offset= 0x00
-	__vo uint32_t EMR;				//0X04
-	__vo uint32_t RTSR;				//0x08
-	__vo uint32_t FTSR;				//0x0C
-	__vo uint32_t SWIER;			//0x10
-	__vo uint32_t PR;				//0x14
+	__vo uint32_t IMR;
+	__vo uint32_t EMR;
+	__vo uint32_t RTSR;
+	__vo uint32_t FTSR;
+	__vo uint32_t SWIER;
+	__vo uint32_t PR;
 }EXTI_RegDef_t;
 
 typedef struct{
-	__vo uint32_t MEMRMP;		//0x00
-	__vo uint32_t PMC;			//0x04
-	__vo uint32_t EXTICR[4];	//0x08-0x14, ONLY INTERESTED IN THESE REGISTERS FOR USE WITH THE EXTI
-	__vo uint32_t CMPCR;		//0x18
-	// __vo uint32_t CFGR;      0x2C
+	__vo uint32_t MEMRMP;
+	__vo uint32_t PMC;
+	__vo uint32_t EXTICR[4];
+	__vo uint32_t CMPCR;
+	__vo uint32_t CFGR;
 }SYSCFG_RegDef_t;
-/*
- * peripheral definitions ( Peripheral base addresses typecasted to xxx_RegDef_t)
- */
+
 
 typedef struct{
-	__vo uint32_t CR1;			//0x00
-	__vo uint32_t CR2;			//0x04
-	__vo uint32_t SR;			//0x08
-	__vo uint32_t DR;			//0x0C
-	__vo uint32_t CRCPR;			//0x10
-	__vo uint32_t RXCRCR;		//0x14
-	__vo uint32_t TXCRCR;		//0x18
-	__vo uint32_t I2SCFGR;		//0x1C
-	__vo uint32_t I2SPR;			//0x20
+	__vo uint32_t CR1;
+	__vo uint32_t CR2;
+	__vo uint32_t SR;
+	__vo uint32_t DR;
+	__vo uint32_t CRCPR;
+	__vo uint32_t RXCRCR;
+	__vo uint32_t TXCRCR;
+	__vo uint32_t I2SCFGR;
+	__vo uint32_t I2SPR;
 
 }SPI_RegDef_t;
 
 typedef struct
 {
-  __vo uint32_t CR1;        /*!< TODO,     										Address offset: 0x00 */
-  __vo uint32_t CR2;        /*!< TODO,     										Address offset: 0x04 */
-  __vo uint32_t OAR1;       /*!< TODO,     										Address offset: 0x08 */
-  __vo uint32_t OAR2;       /*!< TODO,     										Address offset: 0x0C */
-  __vo uint32_t DR;         /*!< TODO,     										Address offset: 0x10 */
-  __vo uint32_t SR1;        /*!< TODO,     										Address offset: 0x14 */
-  __vo uint32_t SR2;        /*!< TODO,     										Address offset: 0x18 */
-  __vo uint32_t CCR;        /*!< TODO,     										Address offset: 0x1C */
-  __vo uint32_t TRISE;      /*!< TODO,     										Address offset: 0x20 */
-  __vo uint32_t FLTR;       /*!< TODO,     										Address offset: 0x24 */
+  __vo uint32_t CR1;
+  __vo uint32_t CR2;
+  __vo uint32_t OAR1;
+  __vo uint32_t OAR2;
+  __vo uint32_t DR;
+  __vo uint32_t SR1;
+  __vo uint32_t SR2;
+  __vo uint32_t CCR;
+  __vo uint32_t TRISE;
+  __vo uint32_t FLTR;
 }I2C_RegDef_t;
 
 typedef struct{
@@ -266,7 +267,7 @@ typedef struct{
 #define SPI1_PCLK_EN() (RCC->APB2ENR |= (1 << 12))
 #define SPI2_PCLK_EN() (RCC->APB1ENR |= (1 << 14))
 #define SPI3_PCLK_EN() (RCC->APB1ENR |= (1 << 15))
-#define SPI4_PCLK_EN() (RCC->APB2ENR |= (1 << 13))
+
 
 
 /*
@@ -303,6 +304,8 @@ typedef struct{
 										(x == GPIOH) ? 7 :\
 										(x == GPIOI) ? 8 :0)
 
+
+//ISR handlers
 #define IRQ_NO_EXTI0 		6
 #define IRQ_NO_EXTI1 		7
 #define IRQ_NO_EXTI2 		8
@@ -313,7 +316,6 @@ typedef struct{
 #define IRQ_NO_SPI1			35
 #define IRQ_NO_SPI2         36
 #define IRQ_NO_SPI3         51
-#define IRQ_NO_SPI4
 #define IRQ_NO_I2C1_EV     	31
 #define IRQ_NO_I2C1_ER     	32
 #define IRQ_NO_I2C2_EV		33
@@ -327,7 +329,23 @@ typedef struct{
 #define IRQ_NO_UART5	    53
 #define IRQ_NO_USART6	    71
 
+
+//designated IRQ numbers to assign priority of the interrupt, if multiple occur
 #define NVIC_IRQ_PRI0		0
+#define NVIC_IRQ_PRI1		1
+#define NVIC_IRQ_PRI2		2
+#define NVIC_IRQ_PRI3		3
+#define NVIC_IRQ_PRI4		4
+#define NVIC_IRQ_PRI5		5
+#define NVIC_IRQ_PRI6		6
+#define NVIC_IRQ_PRI7		7
+#define NVIC_IRQ_PRI8		8
+#define NVIC_IRQ_PRI9		9
+#define NVIC_IRQ_PRI10		10
+#define NVIC_IRQ_PRI11		11
+#define NVIC_IRQ_PRI12		12
+#define NVIC_IRQ_PRI13		13
+#define NVIC_IRQ_PRI14		14
 #define NVIC_IRQ_PRI15		15
 
 
@@ -341,6 +359,10 @@ typedef struct{
 #define FLAG_RESET         	RESET
 #define FLAG_SET 			SET
 
+
+/*
+ * Bit position definitions for SPI peripheral
+ */
 #define SPI_CR1_CPHA     				 0
 #define SPI_CR1_CPOL      				 1
 #define SPI_CR1_MSTR     				 2
@@ -356,9 +378,7 @@ typedef struct{
 #define SPI_CR1_BIDIOE     			 	14
 #define SPI_CR1_BIDIMODE      			15
 
-/*
- * Bit position definitions SPI_CR2
- */
+
 #define SPI_CR2_RXDMAEN		 			0
 #define SPI_CR2_TXDMAEN				 	1
 #define SPI_CR2_SSOE				 	2
@@ -368,9 +388,7 @@ typedef struct{
 #define SPI_CR2_TXEIE					7
 
 
-/*
- * Bit position definitions SPI_SR
- */
+
 #define SPI_SR_RXNE						0
 #define SPI_SR_TXE				 		1
 #define SPI_SR_CHSIDE				 	2
@@ -382,7 +400,7 @@ typedef struct{
 #define SPI_SR_FRE					 	8
 
 /*
- * Bit position definitions I2C_CR1
+ * Bit position definitions for I2C peripheral
  */
 
 #define I2C_CR1_PE						0
@@ -431,6 +449,9 @@ typedef struct{
 #define I2C_CCR_DUTY					14
 #define I2C_SR2_FS						15
 
+/*
+ * Bit position definitions for USART peripheral
+ */
 
 #define USART_SR_CTS					9
 #define USART_SR_TXE					7
