@@ -15,6 +15,9 @@ for peripheral clock configurations, for the USART peripherals
 A simple example application, involving transmission of data to an Arduino uno was used to test the non-interrupt routines and provides a guide for the user.
 The aforementioned arduino file has been attached for the user.
 
+To utilise the USART peripherals, one has to also include the GPIO header and source files of this repository in their project. This is necessary, in 
+GPIO pin assignments for their purpose when using the USART peripheral of their choice.
+
 To provide ease of use for this library, a doxygen HTML help file has been generated. The file clearly documents the code, in terms of macros, 
 function defintions and usage, and parameters for those functions. 
 
