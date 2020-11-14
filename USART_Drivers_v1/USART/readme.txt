@@ -1,7 +1,7 @@
 /*
 
 The following files form a part of a simple USART library written for STM32F407xx/STM32F405xx microcontrollers. To implement the following code, an
-STM32F07VGTX-DISC1 development board had been used, along with the onboard ST-LINK(ST-LINK GDB Server) debugger and STM32CubeIDE. 
+STM32F407VGTX-DISC1 development board had been used, along with the onboard ST-LINK(ST-LINK GDB Server) debugger and STM32CubeIDE. 
 These drivers do not use any HAL (Hardware abstraction layer) of ST Microelectronics and were implemented entirely from ground up. 
 Assistance for processor details, microcontroller-specific registers and peripherals were taken from the reference manual of the 
 development board and, datasheet of the STM32F407xx/STM32F405xx. The library also includes interrupt handling.
